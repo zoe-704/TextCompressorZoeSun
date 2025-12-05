@@ -38,8 +38,10 @@ public class TextCompressor {
         int n = words.length;
         HashMap<String, Integer> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            if (map.containsKey(words[i]) map.put(words[i], 1 + map.get(words[i]));
-            else map.put(words[i], 1);
+            if (map.containsKey(words[i])
+                map.put(words[i], 1 + map.get(words[i]));
+            else
+                map.put(words[i], 1);
         }
         BinaryStdOut.close();
     }
