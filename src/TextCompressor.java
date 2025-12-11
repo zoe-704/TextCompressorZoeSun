@@ -34,14 +34,19 @@ public class TextCompressor {
 
     private static void compress() {
         String str = BinaryStdIn.readString();
-        String[] words = str.split(" ");
-        int n = words.length;
-        HashMap<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            if (map.containsKey(words[i])
-                map.put(words[i], 1 + map.get(words[i]));
-            else
-                map.put(words[i], 1);
+        TST t = new TST();
+        int n = str.length(), i = 0, cur = 81;
+
+        while (i < n) {
+            String prefix = t.getLongestPrefix(str, i);
+            if (prefix == null) {
+                char x = str.charAt(i);
+                t.insert(String.valueOf(x), x);
+            } else {
+                t.insert(prefix, , cur, prefix.length()+1);
+            }
+
+
         }
         BinaryStdOut.close();
     }

@@ -13,7 +13,7 @@ public class TST {
     private Node root;
 
     /**
-     * Each Node contains its own charater, as well as references to its three
+     * Each Node contains its own character, as well as references to its three
      * children.
      * If this Node's character is the terminus of a coded word, it will also
      * contain
