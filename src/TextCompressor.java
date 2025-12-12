@@ -65,6 +65,7 @@ public class TextCompressor {
 
     private static void expand() {
         String[] map = new String[256];
+        String cur_string, next_string;
         for (int i = 0; i < 128; i++) {
             map[i] = Character.toString(i);
         }
@@ -75,18 +76,34 @@ public class TextCompressor {
             BinaryStdOut.close();
             return;
         }
+        cur_string = map[cur_code];
         // expand
         while (!BinaryStdIn.isEmpty()) {
             int next_code = BinaryStdIn.readInt(8);
+            //cur_string = map[cur_code];
+
             if (next_code == 128) {
-                BinaryStdOut.write(map[cur_code]);
+                BinaryStdOut.write(cur_string);
                 return;
             }
-            // current string
+
+            // Lookahead for next code and string
+            if (map[next_code] != null) { // Case 1: next string in map
+                next_string = map[next_code];
+            } else { // Case 2: next string not in map
+                next_string = cur_string + cur_string.charAt(0);
+            }
+            BinaryStdOut.write(next_string);
+            // Add to map
+            if (code < 256) {
+                map[code++] = cur_string + next_string.charAt(0);
+            }
+
             // lookahead
                 // check ahead case
             // write out
             // next code
+            cur_string = next_string;
         }
         BinaryStdOut.close();
     }
