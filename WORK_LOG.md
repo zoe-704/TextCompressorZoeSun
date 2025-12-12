@@ -6,6 +6,7 @@ Name: Zoe Sun
 | Dec 4  |  10-1130pm  | I spent more time brainstorming a way to actually compress text. I think that directly compressing the most common words would be helpful, but I'm not too sure yet. I think that finding the frequency of each word somehow would be really useful to compress, so I'm using a hashmap for that. |
 | Dec 9  |  120-145pm  |                                                                                                                                                                                                                      I discussed this problem set with Lily and began implementing some LZW code. |
 | Dec 11 | 1110-1155pm |                                                                                                       I talked to Lily about the problem set some more and she reminded me to fill in the tst with the first 128 ascii codes which was really helpful and then I just continued implementing LZW. |
+| Dec 11 |    7-730    |                                                                                                                                                            I finished implementing my compress function. I then began working on the expansion function and mapping out what i need to do for it. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.

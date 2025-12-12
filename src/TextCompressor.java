@@ -37,10 +37,10 @@ public class TextCompressor {
         // Declare local variables for later use
         int n = str.length();
         int i = 0; // Index for iterating over str
-        int code = 129; // Ascii codes to assign
+        int code = 129; // First of ascii codes to assign
 
-        // Insert chars a-z into tst
-        for (int c = 97; c <= 122; c++) {
+        // Insert first 128 ascii codes into tst
+        for (int c = 0; c < 128; c++) {
             t.insert(String.valueOf((char) c), c);
         }
 
@@ -50,27 +50,43 @@ public class TextCompressor {
             String prefix = t.getLongestPrefix(str, i);
             int cur_code = t.lookup(prefix);
 
-            // Add new code to TST if possible
-            if (code <= 255) {
-                t.insert(prefix + str.charAt(i + prefix.length()), code);
-                code++;
+            // Add new code to TST if there is enough space
+            if (i + prefix.length() < n) {
+                char next = str.charAt(i + prefix.length());
+                t.insert(prefix + next, code++);
             }
             // Increment index to next letter and write out code
             i += prefix.length();
-            BinaryStdOut.write(cur_code);
+            BinaryStdOut.write(cur_code, 8);
         }
-        BinaryStdOut.write(80); // EOF code
+        BinaryStdOut.write(128, 8); // EOF code 0x80 = 128
         BinaryStdOut.close();
     }
 
     private static void expand() {
-        String codes = BinaryStdIn.readString();
-        TST t = new TST();
-        int cur_code, ahead_code;
-        for (int i = 0; i < codes.length() - 1; i++) {
-            cur_code = codes.charAt(i);
-            ahead_code = codes.charAt(i+1);
+        String[] map = new String[256];
+        for (int i = 0; i < 128; i++) {
+            map[i] = Character.toString(i);
+        }
+        int code = 129;
 
+        int cur_code = BinaryStdIn.readInt(8);
+        if (cur_code == 128) {
+            BinaryStdOut.close();
+            return;
+        }
+        // expand
+        while (!BinaryStdIn.isEmpty()) {
+            int next_code = BinaryStdIn.readInt(8);
+            if (next_code == 128) {
+                BinaryStdOut.write(map[cur_code]);
+                return;
+            }
+            // current string
+            // lookahead
+                // check ahead case
+            // write out
+            // next code
         }
         BinaryStdOut.close();
     }
