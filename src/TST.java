@@ -85,7 +85,7 @@ public class TST {
      * word.
      *
      * @param s The target String
-     * @return the correcponding code. If no code is associated, or if the target
+     * @return the corresponding code. If no code is associated, or if the target
      * word is not
      * present, EMPTY is returned.
      */

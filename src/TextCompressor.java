@@ -21,9 +21,6 @@
  *  = 43.54% compression ratio!
  ******************************************************************************/
 
-import java.util.HashMap;
-import java.util.Arrays;
-
 /**
  *  The {@code TextCompressor} class provides static methods for compressing
  *  and expanding natural language through textfile input.
@@ -33,30 +30,51 @@ import java.util.Arrays;
 public class TextCompressor {
 
     private static void compress() {
+        // Read in string and create new tst
         String str = BinaryStdIn.readString();
         TST t = new TST();
-        int n = str.length(), i = 0, cur = 81;
 
+        // Declare local variables for later use
+        int n = str.length();
+        int i = 0; // Index for iterating over str
+        int code = 129; // Ascii codes to assign
+
+        // Insert chars a-z into tst
+        for (int c = 97; c <= 122; c++) {
+            t.insert(String.valueOf((char) c), c);
+        }
+
+        // Iterate and compress str
         while (i < n) {
+            // Get the longest prefix and its code
             String prefix = t.getLongestPrefix(str, i);
-            if (prefix == null) {
-                char x = str.charAt(i);
-                t.insert(String.valueOf(x), x);
-            } else {
-                t.insert(prefix, , cur, prefix.length()+1);
-            }
+            int cur_code = t.lookup(prefix);
 
+            // Add new code to TST if possible
+            if (code <= 255) {
+                t.insert(prefix + str.charAt(i + prefix.length()), code);
+                code++;
+            }
+            // Increment index to next letter and write out code
+            i += prefix.length();
+            BinaryStdOut.write(cur_code);
+        }
+        BinaryStdOut.write(80); // EOF code
+        BinaryStdOut.close();
+    }
+
+    private static void expand() {
+        String codes = BinaryStdIn.readString();
+        TST t = new TST();
+        int cur_code, ahead_code;
+        for (int i = 0; i < codes.length() - 1; i++) {
+            cur_code = codes.charAt(i);
+            ahead_code = codes.charAt(i+1);
 
         }
         BinaryStdOut.close();
     }
 
-        private static void expand() {
-
-        // TODO: Complete the expand() method
-
-        BinaryStdOut.close();
-    }
 
     public static void main(String[] args) {
         if      (args[0].equals("-")) compress();
