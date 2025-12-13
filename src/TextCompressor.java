@@ -29,6 +29,12 @@
  */
 public class TextCompressor {
 
+    /*
+    alice.txt 670526/1104032 = 60.71%
+    abra.txt = 104/136 = 76.46%
+    shakespeare.txt = 26862352/41370776 = 64.93%
+    tricky.txt = 40/56 = 71.43%
+     */
     private static void compress() {
         // Read in string and create new tst
         String str = BinaryStdIn.readString();
@@ -51,7 +57,7 @@ public class TextCompressor {
             int cur_code = t.lookup(prefix);
 
             // Add new code to TST if there is enough space
-            if (i + prefix.length() < n) {
+            if (i + prefix.length() < n && code < 255) {
                 char next = str.charAt(i + prefix.length());
                 t.insert(prefix + next, code++);
             }

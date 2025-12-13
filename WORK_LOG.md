@@ -8,6 +8,7 @@ Name: Zoe Sun
 | Dec 11 | 1110-1155pm |                                                                                                       I talked to Lily about the problem set some more and she reminded me to fill in the tst with the first 128 ascii codes which was really helpful and then I just continued implementing LZW. |
 | Dec 11 |    7-730    |                                                                                                                                                            I finished implementing my compress function. I then began working on the expansion function and mapping out what i need to do for it. |
 | Dec 12 | 1115-1145am |                                                                                                                                                                                                          I wrote the expansion function during euro based off of class discussions, did not test. |
+| Dec 12 |  815-830pm  |                                                                                                    Tested and found a bug that I didn't check to see if new codes to add to tst were less than 255, so I made sure to add that and then record data regarding compressed bits for this algorithm. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
